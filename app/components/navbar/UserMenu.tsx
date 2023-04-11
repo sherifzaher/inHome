@@ -1,6 +1,6 @@
 'use client';
 
-import { AiOutlineMenu } from 'react-icons/all';
+import { AiOutlineMenu } from 'react-icons/ai';
 import Avatar from '@/app/components/Avatar';
 import { useCallback, useState } from 'react';
 import MenuItem from '@/app/components/navbar/MenuItem';
