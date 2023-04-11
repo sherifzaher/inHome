@@ -1,9 +1,9 @@
 'use client';
 
 import Container from '@/app/components/Container';
-import Logo from '@/app/components/Navbar/Logo';
-import Search from '@/app/components/Navbar/Search';
-import UserMenu from '@/app/components/Navbar/UserMenu';
+import Logo from '@/app/components/navbar/Logo';
+import Search from '@/app/components/navbar/Search';
+import UserMenu from '@/app/components/navbar/UserMenu';
 
 function Navbar() {
   return (
