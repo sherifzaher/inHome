@@ -5,9 +5,17 @@ import Avatar from '@/app/components/Avatar';
 import { useCallback, useState } from 'react';
 import MenuItem from '@/app/components/navbar/MenuItem';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
+import useLoginModal from '@/app/hooks/useLoginModal';
+import { signOut } from 'next-auth/react';
+import { SafeUser } from '@/app/types';
 
-function UserMenu() {
+interface UserMenuProps {
+  currentUser?: SafeUser | null;
+}
+
+function UserMenu({ currentUser }: UserMenuProps) {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = useCallback(() => setIsOpen((prev) => !prev), []);
 
@@ -26,15 +34,28 @@ function UserMenu() {
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
-            <Avatar />
+            <Avatar src={currentUser?.image} />
           </div>
         </div>
       </div>
       {isOpen && (
         <div className="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md md:w-3/4">
           <div className="flex cursor-pointer flex-col">
-            <MenuItem onClick={() => {}} label="Login" />
-            <MenuItem onClick={registerModal.onOpen} label="Sign up" />
+            {currentUser ? (
+              <>
+                <MenuItem onClick={() => {}} label="My trips" />
+                <MenuItem onClick={() => {}} label="My favourites" />
+                <MenuItem onClick={() => {}} label="My reservations" />
+                <MenuItem onClick={() => {}} label="My properties" />
+                <MenuItem onClick={() => {}} label="InHome my home" />
+                <MenuItem onClick={() => signOut()} label="Logout" />
+              </>
+            ) : (
+              <>
+                <MenuItem onClick={loginModal.onOpen} label="Login" />
+                <MenuItem onClick={registerModal.onOpen} label="Sign up" />
+              </>
+            )}
           </div>
         </div>
       )}
