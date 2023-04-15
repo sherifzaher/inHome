@@ -4,6 +4,7 @@ import Container from '@/app/components/Container';
 import Logo from '@/app/components/navbar/Logo';
 import Search from '@/app/components/navbar/Search';
 import UserMenu from '@/app/components/navbar/UserMenu';
+import Categories from '@/app/components/navbar/Categories';
 import { SafeUser } from '@/app/types';
 
 interface NavbarProps {
@@ -21,6 +22,7 @@ function Navbar({ currentUser }: NavbarProps) {
           </div>
         </Container>
       </div>
+      <Categories />
     </div>
   );
 }
