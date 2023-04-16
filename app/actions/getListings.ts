@@ -17,10 +17,10 @@ export default async function getListings(params: IListingsParams) {
       userId,
       roomCount,
       guestCount,
+      bathroomCount,
       endDate,
       startDate,
       locationValue,
-      bathroomCount,
       category,
     } = params;
 

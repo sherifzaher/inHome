@@ -3,6 +3,7 @@ import PropertiesClient from '@/app/properties/PropertiesClient';
 
 import getCurrentUser from '@/app/actions/getCurrentUser';
 import getListings from '@/app/actions/getListings';
+import ClientComponent from '@/app/components/ClientComponent';
 
 export const metadata = {
   title: 'inHome | Properties',
@@ -11,7 +12,11 @@ export const metadata = {
 async function PropertiesPage() {
   const currentUser = await getCurrentUser();
   if (!currentUser) {
-    return <EmptyState title="Unauthorized" subTitle="Please login" />;
+    return (
+      <ClientComponent>
+        <EmptyState title="Unauthorized" subTitle="Please login" />;
+      </ClientComponent>
+    );
   }
 
   const listings = await getListings({
@@ -20,14 +25,20 @@ async function PropertiesPage() {
 
   if (listings.length === 0) {
     return (
-      <EmptyState
-        title="No properties found"
-        subTitle="Looks like you have no properties"
-      />
+      <ClientComponent>
+        <EmptyState
+          title="No properties found"
+          subTitle="Looks like you have no properties"
+        />
+      </ClientComponent>
     );
   }
 
-  return <PropertiesClient listings={listings} currentUser={currentUser} />;
+  return (
+    <ClientComponent>
+      <PropertiesClient listings={listings} currentUser={currentUser} />;
+    </ClientComponent>
+  );
 }
 
 export default PropertiesPage;

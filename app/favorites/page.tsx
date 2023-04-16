@@ -3,6 +3,7 @@ import FavoritesClient from '@/app/favorites/FavoritesClient';
 
 import getCurrentUser from '@/app/actions/getCurrentUser';
 import getFavoriteListings from '@/app/actions/getFavoriteListings';
+import ClientComponent from '@/app/components/ClientComponent';
 
 export const metadata = {
   title: 'inHome | Favorites',
@@ -14,14 +15,20 @@ async function FavoritesPage() {
 
   if (listings.length === 0) {
     return (
-      <EmptyState
-        title="No favorites found"
-        subTitle="Looks like you have no favorite listings."
-      />
+      <ClientComponent>
+        <EmptyState
+          title="No favorites found"
+          subTitle="Looks like you have no favorite listings."
+        />
+      </ClientComponent>
     );
   }
 
-  return <FavoritesClient listings={listings} currentUser={currentUser} />;
+  return (
+    <ClientComponent>
+      <FavoritesClient listings={listings} currentUser={currentUser} />
+    </ClientComponent>
+  );
 }
 
 export default FavoritesPage;
