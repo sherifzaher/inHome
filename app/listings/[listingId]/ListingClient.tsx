@@ -36,6 +36,7 @@ function ListingClient({
 }: ListingClientProps) {
   const loginModal = useLoginModal();
   const router = useRouter();
+
   const disabledDates = useMemo(() => {
     let dates: Date[] = [];
 
@@ -97,7 +98,7 @@ function ListingClient({
         dateRange.startDate
       );
       if (dayCount && listing.price) {
-        setTotalPrice(dayCount * listing.price);
+        setTotalPrice((dayCount + 1) * listing.price);
       } else {
         setTotalPrice(listing.price);
       }

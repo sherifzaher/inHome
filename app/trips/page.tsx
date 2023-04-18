@@ -1,5 +1,4 @@
 import EmptyState from '@/app/components/EmptyState';
-import ClientComponent from '@/app/components/ClientComponent';
 import TripsClient from '@/app/trips/TripsClient';
 
 import getCurrentUser from '@/app/actions/getCurrentUser';
@@ -12,11 +11,7 @@ export const metadata = {
 async function TripsPage() {
   const currentUser = await getCurrentUser();
   if (!currentUser) {
-    return (
-      <ClientComponent>
-        <EmptyState title="Unauthorized" subTitle="Please login" />
-      </ClientComponent>
-    );
+    return <EmptyState title="Unauthorized" subTitle="Please login" />;
   }
 
   const reservations = await getReservations({
@@ -25,20 +20,14 @@ async function TripsPage() {
 
   if (reservations.length === 0) {
     return (
-      <ClientComponent>
-        <EmptyState
-          title="No trips found"
-          subTitle={"Looks like you haven't any trips"}
-        />
-      </ClientComponent>
+      <EmptyState
+        title="No trips found"
+        subTitle={"Looks like you haven't any trips"}
+      />
     );
   }
 
-  return (
-    <ClientComponent>
-      <TripsClient reservations={reservations} currentUser={currentUser} />
-    </ClientComponent>
-  );
+  return <TripsClient reservations={reservations} currentUser={currentUser} />;
 }
 
 export default TripsPage;
