@@ -26,5 +26,4 @@ function Navbar({ currentUser }: NavbarProps) {
     </div>
   );
 }
-
 export default Navbar;

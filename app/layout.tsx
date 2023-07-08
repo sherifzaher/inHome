@@ -8,6 +8,7 @@ import RentModal from '@/app/components/modals/RentModal';
 import ToasterProvider from '@/app/providers/ToasterProvider';
 import getCurrentUser from '@/app/actions/getCurrentUser';
 import SearchModal from '@/app/components/modals/SearchModal';
+import Head from 'next/head';
 
 const font = Nunito({
   subsets: ['latin'],
@@ -15,6 +16,7 @@ const font = Nunito({
 export const metadata = {
   title: 'inHome',
   description: 'Rent your room!',
+  manifest: '/manifest.json',
 };
 
 export default async function RootLayout({
